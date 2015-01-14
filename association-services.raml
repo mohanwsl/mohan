@@ -1,0 +1,79 @@
+#%RAML 1.0
+title: CRM ASSOCIATION SERVICE API
+version: 1.0
+#baseUri: http://server/api/{version}
+
+schemas: 
+  - associateAccountBooks : !include schemas/AssociateAccountBooks.json
+  - associateSalesOrderHeader : !include schemas/AssociateCustObj4Books.json
+  - associateSalesOrderLine : !include schemas/AssociateCustObj5Books.json
+  - associateContact : !include  schemas/AssociateContactBooks.json
+  - associateOpportunity : !include  schemas/AssociateOpportunityBooks.json
+  - associateQuote : !include  schemas/AssociateQuoteBooks.json 
+resourceTypes: 
+  - associationResponse:        
+      post:
+        responses:
+          200: 
+            body:
+              application/json:
+                example: |
+                  {
+                   "status":"Association Request is being processed"
+                  }                 
+
+/Association:
+  
+  /Account:
+      type: associationResponse
+      post:
+        description: Associate Accounts and Books
+        body:
+          application/json:
+            schema: associateAccountBooks
+            example: !include  sampledata/AssociateAccountBooks.json
+            
+  /SalesOrderHeader:
+      type: associationResponse
+      post:
+        description: Associate SalesOrderHeader and Books
+        body:
+          application/json:
+            schema: associateSalesOrderHeader
+            example: !include  sampledata/AssociateCustObj4Books.json
+            
+  /SalesOrderLine:
+      type: associationResponse
+      post:
+        description: Associate SalesOrderLine and Books
+        body:
+          application/json:
+            schema: associateSalesOrderLine
+            example: !include  sampledata/AssociateCustObj5Books.json
+            
+  /Contact:
+      type: associationResponse
+      post:
+        description: Associate Contact and Books
+        body:
+          application/json:
+            schema: associateContact
+            example: !include  sampledata/AssociateContactBooks.json
+            
+  /Opportunity:
+      type: associationResponse
+      post:
+        description: Associate Opportunity and Books
+        body:
+          application/json:
+            schema: associateOpportunity
+            example: !include  sampledata/AssociateOpportunityBooks.json
+           
+  /Quote:
+      type: associationResponse
+      post:
+        description: Associate Quote and Books
+        body:
+          application/json:
+            schema: associateQuote
+            example: !include  sampledata/AssociateQuoteBooks.json
